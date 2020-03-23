@@ -37,6 +37,8 @@ class _PriceScreenState extends State<PriceScreen> {
         setState(
           () {
             selectedCurrency = value;
+            //2: Call getData() when the picker/dropdown changes.
+            getData();
           },
         );
       },
@@ -53,6 +55,12 @@ class _PriceScreenState extends State<PriceScreen> {
       itemExtent: 32.0,
       onSelectedItemChanged: (selectedIndex) {
         print(currenciesList[selectedIndex]);
+        setState(() {
+          //  Save the selected currency to the property selectedCurrency
+          selectedCurrency = currenciesList[selectedIndex];
+          //  Call getData() when the picker/dropdown changes.
+          getData();
+        });
       },
       children: pickerItems,
     );
@@ -61,10 +69,10 @@ class _PriceScreenState extends State<PriceScreen> {
   //  Create an async method here await the coin data from coin_data.dart
   void getData() async {
     try {
-      double data = await CoinData().getCoinData();
+      double data = await CoinData().getCoinData(selectedCurrency);
       //  can't await in a setState(). So you have to separate it out into two steps.
       setState(() {
-        bitcoinValueInUSD = data.toStringAsFixed(2);
+        bitcoinValueInUSD = data.toStringAsFixed(0);
       });
     } catch (e) {
       print(e);
@@ -105,11 +113,11 @@ class _PriceScreenState extends State<PriceScreen> {
                       EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
                   child: Text(
                     //  Update the Text Widget with the data in bitcoinValueInUSD.
-                    '1 BTC = $bitcoinValueInUSD USD',
+                    '1 BTC = $bitcoinValueInUSD /BTC $selectedCurrency',
 
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 30.0,
+                      fontSize: 20.0,
                       color: Colors.white,
                     ),
                   ),
