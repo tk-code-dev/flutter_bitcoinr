@@ -4,9 +4,7 @@
  providing a different user interface depending on the platform.
 
 
-## What you will create
-
-making a crypto currency price checking app. 
+## making a crypto currency price checking app. 
 
 <img src="images/android.png" width="200px">      <img src="images/ios.png" width="200px">
 
