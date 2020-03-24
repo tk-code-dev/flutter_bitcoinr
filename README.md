@@ -7,7 +7,10 @@
 ## What you will create
 
 making a crypto currency price checking app. 
-<img src="android.png" width="200px">
+<img src="images/android.png" width="200px">
+Android
+<img src="images/ios.png" width="200px">
+iOS
 ![Finished App](https://github.com/londonappbrewery/Images/blob/master/bitcoin-flutter-demo.gif)
 
 ## 
